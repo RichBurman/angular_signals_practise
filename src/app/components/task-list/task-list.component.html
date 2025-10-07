@@ -1,1 +1,16 @@
-<p>task-list works!</p>
+<ul>
+    @for (task of taskService.tasks(); track task.id) {
+        <li>
+            <input type="checkbox"
+                [checked]="task.done"
+                (change)="taskService.toggleTask(task.id)"
+                />
+            <span [class.done]="task.done">{{ task.title }}</span>
+            <button (click)="taskService.deleteTask(task.id)">❌</button>
+        </li>
+    }
+
+    @empty {
+        <p>No tasks yet. Add one above!</p>
+    }
+</ul>
