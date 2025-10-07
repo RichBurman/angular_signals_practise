@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { TaskInputComponent } from './components/task-input/task-input.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 
+
+  
 @Component({
   selector: 'app-root',
   standalone: true,
