@@ -4,20 +4,20 @@
   <button mat-raised-button color="warn" (click)="setFilter('done')">Done</button>
 </div>
 
-<ul>
-  @for (task of taskService.tasks(); track task.id) {
-    <li>
-      <input
-        type="checkbox"
-        [checked]="task.done"
-        (change)="taskService.toggleTask(task.id)"
-      />
-      <span [class.done]="task.done">{{ task.title }}</span>
-      <button mat-button color="warn" (click)="taskService.deleteTask(task.id)">❌</button>
-    </li>
-  }
 
-  @empty {
-    <p>No tasks found for this filter.</p>
-  }
+<ul>
+    @for (task of taskService.tasks(); track task.id) {
+        <li>
+            <input type="checkbox"
+                [checked]="task.done"
+                (change)="taskService.toggleTask(task.id)"
+                />
+            <span [class.done]="task.done">{{ task.title }}</span>
+            <button (click)="taskService.deleteTask(task.id)">❌</button>
+        </li>
+    }
+
+    @empty {
+        <p>No tasks yet. Add one above!</p>
+    }
 </ul>
