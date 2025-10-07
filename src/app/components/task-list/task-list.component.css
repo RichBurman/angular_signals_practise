@@ -1,15 +1,7 @@
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-li {
+.filter-buttons {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 8px 0;
-  padding: 6px;
-  border-bottom: 1px solid #eee;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .done {

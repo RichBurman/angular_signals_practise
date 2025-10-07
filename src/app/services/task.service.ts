@@ -14,9 +14,24 @@ export class TaskService {
     // Signal to hold the list of tasks Task[] means "an array of Task objects". The [] is TypeScript syntax for “array of this type”. Initially, it’s empty: [].
 
     private _tasks = signal<Task[]>([]);
+    private _filter = signal<'all' | 'done' | 'todo'>('all');
 
     // Computed signal: a read-only view of the tasks for components
-    readonly tasks = computed(() => this._tasks());
+    readonly tasks = computed(() => {
+        const filter = this._filter();
+        const allTasks = this._tasks();
+
+        if (filter === 'done') return allTasks.filter(t => t.done);
+        if (filter === 'todo') return allTasks.filter(t => !t.done);
+        return allTasks;
+    });
+
+    readonly filter = computed(() => this._filter());
+
+    // Method to set the current filter
+    setFilter(newFilter: 'all' | 'done' | 'todo') {
+        this._filter.set(newFilter);
+    }
 
     // Method to add a new task
     addTask(title: string) {
